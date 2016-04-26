@@ -8,6 +8,7 @@ Dependencies
  - Git 
 
 **Windows users**
+
 1. download [Cygwin](https://www.cygwin.com/) from this page.
 
 2.  While installing, select following 2 packages: **openssh & rsync**
