@@ -52,4 +52,6 @@ Storm is the script which should handle all workflows for local development. Whe
 `bash storm.sh 4`
 
 Follow the instructions, type 'n' when it asks if it should delete the nodes_modules folder
-After building, most usage of the script should involve action 1 & 2 only.
+
+
+**After building, most usage of the script should involve action 1 - 3 only.**
