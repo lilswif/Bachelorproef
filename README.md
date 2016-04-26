@@ -1,4 +1,4 @@
-E-Knights.be 
+Bachelorproef Frederik Van Brussel
 ===================
 
 Dependencies
@@ -43,7 +43,9 @@ Storm is the script which should handle all workflows for local development. Whe
     **status: rt project**
     shows if a virtual machine is running.
     
-4. As  its our first time, lets build or vm:
+4. As  its our first time, lets build our vm:
+
 `bash storm.sh 4`
+
 Follow the instructions, type 'n' when it asks if it should delete the nodes_modules folder
 After building, most usage of the script should involve action 1 & 2 only.
