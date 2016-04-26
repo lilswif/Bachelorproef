@@ -1,0 +1,17 @@
+version: '2'
+services:
+  app:
+    image: eknights/base
+    volumes:
+      - ".:/var/www/app"
+    command: "sh -c 'gulp dev'"
+    ports:
+      - "8085:8085"
+    depends_on:
+      - mongo
+    links:
+      - mongo
+  mongo:
+    image: mongo
+    expose: 
+      - 27017
