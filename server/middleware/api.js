@@ -2,37 +2,26 @@
  * Main application routes
  */
 
- module.exports = (app, path) => {
+import path from 'path';
+
+module.exports = (app) => {
 
   // GET request to homepage
   app.get('/', (req, res) => {
-  	console.log('  | GET request to homepage');
-  	res.render(path.join(__dirname,'..','client','public/index'));
+	  console.log('  | GET request to homepage');
+    res.render(path.join(__dirname,'..','client','public/index'));
   });
 
-  // POST request to login
-  app.post('/login', (req, res) => {
-    console.log('  | POST request to /login');
+  // GET request to 404 error page
+  app.get('/404', (req, res) => {
+	  console.log('  | GET request to 404 page');
+    res.render('404');
   });
 
-  app.get('/logout', function(req, res) {
-    console.log('  | GET request to /logout');
-    req.logout();
-    res.redirect('/');
-  });
-
-  // POST request to register
-  app.post('/register', (req, res) => {
-    console.log('  | POST request to /register');
+  // All other non-existent routes should redirect to the 404 Not Found error page
+  app.all('/*', (req, res) => {
+    console.log('  | Redirect to 404');
+    res.redirect('/404');
   });
   
-  // Route middleware to check if a user is logged in
-  function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-    	return next();
-    } else {
-    	res.redirect('/');
-    }
-  }
-
 };

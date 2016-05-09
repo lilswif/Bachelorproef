@@ -1,0 +1,10 @@
+node_modules
+build
+.tmp
+.idea
+client/bower_components
+dist
+/server/config/local.env.js
+npm-debug.log
+.DS_Store
+Thumbs.db

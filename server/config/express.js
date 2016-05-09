@@ -2,17 +2,14 @@
  * Express configuration
  */
 
-module.exports = (app, path, favicon, cookieParser, bodyParser, session, passport) => {
+import express from 'express';
+import path from 'path';
+import favicon from 'serve-favicon';
+
+module.exports = (app) => {
 
   console.log('Initializing settings');
   
-  app.use(cookieParser());
-  app.use(bodyParser());
-  // Session secret
-  app.use(session({ secret: app.config.session.secret })); 
-  app.use(passport.initialize());
-  // Persistent login sessions
-  app.use(passport.session());
   // Set view directory
   app.set('views',path.join(__dirname,'..','client','views'));
   // Default view engine
@@ -26,6 +23,5 @@ module.exports = (app, path, favicon, cookieParser, bodyParser, session, passpor
   app.disable('strict routing');
   // Disables the "X-Powered-By: Express" HTTP header.
   app.disable('x-powered-by');
-
 
 };

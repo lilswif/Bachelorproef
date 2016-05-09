@@ -2,7 +2,9 @@
  * MongoDB configuration
  */
 
-module.exports = (app, mongoose) => {
+import mongoose from 'mongoose';
+
+module.exports = (app) => {
 
     console.log('Connecting MongoDB');
   
