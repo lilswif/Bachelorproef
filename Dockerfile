@@ -1,7 +1,7 @@
 FROM ubuntu:trusty
-MAINTAINER frederik@e-knights.be
+MAINTAINER Frederik Van Brussel
 
-RUN apt-get install -y curl
+RUN apt-get update && apt-get install -y curl
 
 RUN curl -sL https://deb.nodesource.com/setup | sudo bash -
 

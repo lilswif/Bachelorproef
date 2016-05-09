@@ -13,8 +13,6 @@ module.exports = (app, path, favicon, cookieParser, bodyParser, session, passpor
   app.use(passport.initialize());
   // Persistent login sessions
   app.use(passport.session());
-  // Set favicon path
-  app.use(favicon(path.join(__dirname,'..','client','public/favicon.ico')));
   // Set view directory
   app.set('views',path.join(__dirname,'..','client','views'));
   // Default view engine

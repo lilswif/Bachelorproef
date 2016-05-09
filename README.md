@@ -1,11 +1,14 @@
 Bachelorproef Frederik Van Brussel
 ===================
 
+Guide to developing in a Dockerized Nodejs environment 
+===================
+
 Dependencies
 ----------
  - Vagrant + [this docker plugin](https://github.com/leighmcculloch/vagrant-docker-compose)
  - Recent version of Nodejs and NPM. 
- - Git 
+ - Virtualbox
 
 **Windows users**
 
@@ -15,13 +18,21 @@ Dependencies
 
 3. edit  `` ${cygwin install location}/etc/fstab `` by replacing the last line with ` none / cygdrive binary 0 0`
 
-4. Every command listed below should be executed from within a Cygwin terminal from now on.
+4. edit $VAGRANT_HOME\embedded\gems\gems\vagrant-1.8.0\plugins\synced_folders\rsync\helper.rb and remove the following lines (77-79)
+
+``
+ "-o ControlMaster=auto " +
+"-o ControlPath=#{controlpath} " +
+"-o ControlPersist=10m " +
+``
+
+5. Every command listed below should be executed from within a Cygwin terminal from now on.
 
 Storm: first time
 -------------
-Storm is the script which should handle all workflows for local development. When all dependencies are met, storm should be lightning fast and easy to use.
+Storm is the script which should handle all workflows for local development. When all dependencies are met, storm should be fairly easy to use.
 
-1. Pull the repo and cd into it
+1. Pull the repo and cd into it. Windows users, don't forget set autocrlf to false when cloning (``git config --global core.autocrlf false``) 
 
 2. For the first time, lets explore storm's posibilities. 
    Type `bash storm.sh`
@@ -38,11 +49,10 @@ Storm is the script which should handle all workflows for local development. Whe
     Destroys the running containers and spins up fresh ones
     
     **4: (re)build project**
-    You should use this action when its your first time building the vm, if you wanna run npm install or the vm crashed. 
-    It will ask you if it should remove the node_modules, only type yes when you fucked up the node modules.
+    You should use this action when it’s your first time building the virtual machine, if you want to run npm install or the virtual machine crashed. It will ask you if it should remove the node_modules, only type yes when you messed up the node modules.
     
     **5: destroy project** 
-    deletes the vm, but lets the repo exist on your computer. Rebuild after running this action
+    deletes the vm, but lets the repository exist on your computer. Rebuild after running this action
     
     **status: rt project**
     shows if a virtual machine is running.
@@ -51,7 +61,7 @@ Storm is the script which should handle all workflows for local development. Whe
 
 `bash storm.sh 4`
 
-Follow the instructions, type 'n' when it asks if it should delete the nodes_modules folder
+Follow the instructions, type 'n' when it asks if it should delete the nodes_modules folder.
 
 
 **After building, most usage of the script should involve action 1 - 3 only.**

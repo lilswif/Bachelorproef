@@ -9,7 +9,6 @@ white=$(tput setaf 7)
 #Parameters
 KEUZE=$1
 
-
 #Functions
 function press_enter {
   printf "\nPress Enter to continue\n"
@@ -19,7 +18,7 @@ function press_enter {
 
 function welkom_message {
 	clear
- 	printf "\n E-knights.be control panel\n\n"
+ 	printf "\nBachelorproef Frederik Van Brussel\n\n"
 }
 
 function print_actions {
@@ -28,7 +27,6 @@ function print_actions {
   printf "${green}3: 		${white}reload containers ${reset}\n"
   printf "${green}4: 		${white}(re)build project ${reset}\n"
   printf "${green}5: 		${white}destroy project ${reset}\n"
-  printf "${green}status: 	${white}check if a vm is running ${reset}\n"
 }
 
 function start_project {
@@ -37,7 +35,8 @@ function start_project {
 	vagrant up
 	
 	printf "\n${green}Starting rsync-deamon.....${reset}\n"
-	vagrant rsync-auto &>/dev/null &
+	for x in ‘jobs -p’; do kill -9 $x; done
+  vagrant rsync-auto &>/dev/null &
 
 	printf "\n${red} DO NOT CLOSE THIS TERMINAL UNTIL YOUR FINISHED DEVELOPING / RELOAD CONTAINERS${reset}\n"
 	printf "\nPreparing stream of our app container. \n"
@@ -68,7 +67,8 @@ function reload_project {
 	vagrant ssh -c 'cd /vagrant && docker-compose up -d'
 
 	printf "\n${green}Starting rsync-deamon....${reset}\n"
-	vagrant rsync-auto &>/dev/null &
+	for x in ‘jobs -p’; do kill -9 $x; done
+  vagrant rsync-auto &>/dev/null &
 
 	printf "\n${green}launching stream!${reset}\n"
 	vagrant ssh -c 'docker logs -f vagrant_app_1'
@@ -119,38 +119,26 @@ function destroy_project {
   	fi
 }
 
-function give_status {
-	if [[ $(VBoxManage list runningvms) ]]; then
-    	printf "\n${green} vm running ${reset}\n\n"
-	else
-     	printf "\n${red} no vm running ${reset}\n\n"
-	fi
-}
 
 #Script flow
 if [[ -z $KEUZE  ]]; then
   welkom_message
-  printf "${red}Missing a action number. run this script again with the desired action...\n${reset}"
+  printf "${green}Choose action number: \n${reset}"
   print_actions
-  exit
-else
-  clear
-  welkom_message
-  if [[ $KEUZE -eq 1 ]]; then
-  	start_project
+  read -p "action: " KEUZE
+fi 
+if [[ $KEUZE -eq 1 ]]; then
+    start_project
   elif [[ $KEUZE -eq 2 ]]; then
-  	stop_project
+    stop_project
   elif [[ $KEUZE -eq 3 ]]; then
-  	reload_project
+    reload_project
   elif [[ $KEUZE -eq 4 ]]; then
-  	build_project
+    build_project
   elif [[ $KEUZE -eq 5 ]]; then
-  	destroy_project
-  elif [[ $KEUZE -eq status ]]; then
-  	give_status
+    destroy_project
   else 
-  	printf "${red}Missing a correct action number. run this script again with the desired action...\n${reset}"
-	print_actions
-  	exit
-  fi
-fi
+    printf "${red}Missing a correct action number. run this script again with the desired action...\n${reset}"
+     print_actions
+    exit
+fi 

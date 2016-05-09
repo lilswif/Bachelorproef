@@ -12,6 +12,6 @@ config.mongodb.url = 'mongodb://mongo';
 config.mongodb.port = '27017';
 
 config.session = {};
-config.session.secret = 'fredisnepijperdietokkeltinbashenmoewachtendaarna';
+config.session.secret = 'dockeresvréwijs';
 
 module.exports = config;

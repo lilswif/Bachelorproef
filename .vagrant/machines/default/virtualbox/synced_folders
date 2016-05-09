@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"C:/Users/fred/Desktop/Bachelorproef","disabled":false,"owner":"docker","group":"docker"}},"virtualbox":{"C:/Users/fred/Desktop/Bachelorproef":{"guestpath":"C:/Users/fred/Desktop/Bachelorproef","hostpath":"C:/Users/fred/Desktop/Bachelorproef","disabled":false}}}
