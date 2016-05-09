@@ -1,7 +1,7 @@
 Bachelorproef Frederik Van Brussel
 ===================
 
-Guide to developing in a Dockerized Nodejs environment 
+Developing in a Dockerized Nodejs environment 
 ===================
 
 Dependencies
